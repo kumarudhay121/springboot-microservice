@@ -21,6 +21,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kumarudhay121.orderservice.dto.OrderLineItemsDto;
 import com.kumarudhay121.orderservice.dto.OrderRequest;
+import com.kumarudhay121.orderservice.model.Order;
 import com.kumarudhay121.orderservice.repository.OrderRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -57,12 +58,12 @@ class OrderServiceApplicationTests {
     void shouldPlaceOrder() throws Exception {
         OrderRequest orderRequest = getOrderRequest();
         String orderRequestString = objectMapper.writeValueAsString(orderRequest);
-
+        List<Order> order = orderRepository.findAll();
         mockMvc.perform(MockMvcRequestBuilders.post("/api/order")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(orderRequestString))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
-        log.info(objectMapper.writeValueAsString(orderRepository.findAll()));
+        log.info(objectMapper.writeValueAsString(order.toArray()[0]));
     }
 
     private OrderRequest getOrderRequest() {

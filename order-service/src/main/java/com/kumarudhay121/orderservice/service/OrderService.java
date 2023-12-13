@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class OrderService {
 
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     public void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
