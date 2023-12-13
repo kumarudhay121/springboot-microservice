@@ -63,4 +63,11 @@ class ProductServiceApplicationTests {
                 .build();
     }
 
+    @Test
+    void shouldGetAllProducts() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/product"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+        Assertions.assertEquals(1, productRepository.findAll().size());
+    }
+
 }
