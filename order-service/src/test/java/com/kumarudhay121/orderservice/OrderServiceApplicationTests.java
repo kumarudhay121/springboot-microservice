@@ -63,7 +63,7 @@ class OrderServiceApplicationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(orderRequestString))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
-        log.info(objectMapper.writeValueAsString(order.toArray()[0]));
+        log.info(order.toString());
     }
 
     private OrderRequest getOrderRequest() {
