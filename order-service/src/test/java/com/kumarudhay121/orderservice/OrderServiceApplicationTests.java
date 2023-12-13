@@ -48,7 +48,7 @@ class OrderServiceApplicationTests {
     }
 
     @DynamicPropertySource
-    public void setProperty(DynamicPropertyRegistry dynamicPropertyRegistry) {
+    static void setProperty(DynamicPropertyRegistry dynamicPropertyRegistry) {
         dynamicPropertyRegistry.add("spring.datasource.url", mysql::getJdbcUrl);
         dynamicPropertyRegistry.add("spring.datasource.username", mysql::getUsername);
         dynamicPropertyRegistry.add("spring.datasource.password", mysql::getPassword);
